@@ -29,6 +29,8 @@ const buildTree = function (preorder, inorder) {
     let rootIdx = inOrderMap.get(rootVal);
     let leftSize = rootIdx - inStart;
 
+    // 根 - 左 - 右
+    // 左 - 根 - 右
     root.left = build(preStart + 1, preStart + leftSize, inStart, rootIdx - 1);
     root.right = build(preStart + leftSize + 1, preEnd, rootIdx + 1, inEnd);
 
