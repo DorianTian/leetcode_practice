@@ -20,4 +20,22 @@
  * @param {TreeNode} root
  * @return {void} Do not return anything, modify root in-place instead.
  */
-const flatten = function (root) {};
+const flatten = function (root) {
+  if (!root) return;
+
+  flatten(root.left);
+  flatten(root.right);
+
+  let tempRight = root.right;
+  root.right = root.left;
+  root.left = null;
+
+  let current = root;
+  while (current.right) {
+    current = current.right;
+  }
+
+  current.right = tempRight;
+
+  return root;
+};
