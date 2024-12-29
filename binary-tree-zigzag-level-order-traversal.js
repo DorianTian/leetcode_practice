@@ -32,8 +32,8 @@ const zigzagLevelOrder = function (root) {
     isReverse = !isReverse;
 
     for (let i = 0; i < levelSize; i++) {
-      const node = isReverse ? queue.pop() : queue.shift();
-      levelNodes.push(node.val);
+      const node = queue.shift();
+      isReverse ? levelNodes.unshift(node.val) : levelNodes.push(node.val);
       if (node.left) queue.push(node.left);
       if (node.right) queue.push(node.right);
     }
