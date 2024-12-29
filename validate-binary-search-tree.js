@@ -26,7 +26,7 @@ const isValidBST = function (root) {
     const leftIsBST = inorderDfs(node.left);
     if (prev && prev.val >= node.val) {
       return false;
-    }
+    } 
     prev = node;
     const rightIsBST = inorderDfs(node.right);
 
