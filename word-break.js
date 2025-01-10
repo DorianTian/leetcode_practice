@@ -22,6 +22,7 @@ const wordBreak = function (s, wordDict) {
   const dictSet = new Set(wordDict);
 
   const dp = Array.from({ length: s.length + 1 }, () => false);
+  dp[0] = true;
 
   for (let i = 1; i <= s.length; i++) {
     for (let j = 0; j < i; j++) {
