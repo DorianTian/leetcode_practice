@@ -344,3 +344,21 @@ func Rotate(nums []int, k int) {
 	translate(nums[:k])
 	translate(nums[k:])
 }
+
+func ProductExceptSelf(nums []int) []int {
+	prefix := 1
+	suffix := 1
+	var productList []int
+
+	for _, num := range nums {
+		productList = append(productList, prefix)
+		prefix *= num
+	}
+
+	for i := len(nums) - 1; i >= 0; i-- {
+		productList[i] *= suffix
+		suffix *= nums[i]
+	}
+
+	return productList
+}
