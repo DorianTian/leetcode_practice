@@ -300,3 +300,32 @@ func MaxSubArray(nums []int) int {
 
 	return maxSum
 }
+
+func Merge(intervals [][]int) [][]int {
+	if len(intervals) <= 1 {
+		return intervals
+	}
+
+	sort.Slice(intervals, func(i, j int) bool {
+		return intervals[i][0] < intervals[j][0]
+	})
+
+	var merged [][]int
+	currentMerged := intervals[0]
+
+	for i := 1; i < len(intervals); i++ {
+		if intervals[i][0] <= currentMerged[1] {
+			currentMerged[1] = max(currentMerged[1], intervals[i][1])
+		} else {
+			merged = append(merged, currentMerged)
+			currentMerged = intervals[i]
+		}
+	}
+
+	merged = append(merged, currentMerged)
+	return merged
+}
+
+func Rotate(nums []int, k int) {
+
+}
