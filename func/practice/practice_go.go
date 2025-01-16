@@ -327,5 +327,20 @@ func Merge(intervals [][]int) [][]int {
 }
 
 func Rotate(nums []int, k int) {
+	if len(nums) <= k {
 
+	}
+	translate := func(nums []int) {
+		left, right := 0, len(nums)-1
+		for left <= right {
+			nums[left], nums[right] = nums[right], nums[left]
+			left++
+			right--
+		}
+	}
+
+	k = k % len(nums)
+	translate(nums)
+	translate(nums[:k])
+	translate(nums[k:])
 }
