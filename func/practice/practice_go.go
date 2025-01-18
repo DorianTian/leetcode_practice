@@ -545,3 +545,17 @@ func GetIntersectionNode(headA, headB *utils.ListNode) *utils.ListNode {
 	// 返回交点节点（如果没有交点，则 pA 和 pB 最终都会为 nil）
 	return pA
 }
+
+func ReverseList(head *utils.ListNode) *utils.ListNode {
+	var prev *utils.ListNode
+	current := head
+
+	for current != nil {
+		next := current.Next
+		current.Next = prev
+		prev = current
+		current = next
+	}
+
+	return prev
+}
