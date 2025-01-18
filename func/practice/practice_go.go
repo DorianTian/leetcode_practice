@@ -382,8 +382,8 @@ func FirstMissingPositive(nums []int) int {
 }
 
 func SetZeroes(matrix [][]int) [][]int {
-	firstRow := bool(false)
-	firstCol := bool(false)
+	firstRow := false
+	firstCol := false
 
 	for i := 0; i < len(matrix); i++ {
 		if matrix[i][0] == 0 {
@@ -470,4 +470,23 @@ func SpiralOrder(matrix [][]int) []int {
 	}
 
 	return result
+}
+
+func RotateMatrix(matrix [][]int) [][]int {
+	cols := len(matrix[0])
+
+	// transpose matrix
+	for i := 0; i < len(matrix); i++ {
+		for j := i + 1; j < cols; j++ {
+			matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+		}
+	}
+
+	for i := 0; i < len(matrix); i++ {
+		for j := 0; j < cols/2; j++ {
+			matrix[i][j], matrix[i][cols-j-1] = matrix[i][cols-j-1], matrix[i][j]
+		}
+	}
+
+	return matrix
 }
