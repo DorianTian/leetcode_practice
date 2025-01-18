@@ -2,8 +2,14 @@ package practice
 
 import (
 	"fmt"
+	"leetcode_practice/func/utils"
 	"sort"
 )
+
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
 
 func LongestConsecutive(nums []int) int {
 	hasIteratedNumber := make(map[int]struct{})
@@ -508,4 +514,34 @@ func SearchMatrix(matrix [][]int, target int) bool {
 	}
 
 	return false
+}
+
+func GetIntersectionNode(headA, headB *utils.ListNode) *utils.ListNode {
+	// 检查链表是否为空
+	if headA == nil || headB == nil {
+		return nil
+	}
+
+	// 初始化两个指针
+	pA, pB := headA, headB
+
+	// 遍历两个链表
+	for pA != pB {
+		// 如果 pA 到达链表末尾，则切换到链表 B 的头节点
+		if pA == nil {
+			pA = headB
+		} else {
+			pA = pA.Next
+		}
+
+		// 如果 pB 到达链表末尾，则切换到链表 A 的头节点
+		if pB == nil {
+			pB = headA
+		} else {
+			pB = pB.Next
+		}
+	}
+
+	// 返回交点节点（如果没有交点，则 pA 和 pB 最终都会为 nil）
+	return pA
 }
