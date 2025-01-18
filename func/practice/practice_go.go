@@ -559,3 +559,35 @@ func ReverseList(head *utils.ListNode) *utils.ListNode {
 
 	return prev
 }
+
+func IsPalindrome(head *utils.ListNode) bool {
+	slow, fast := head, head
+	for fast != nil && fast.Next != nil {
+		slow = slow.Next
+		fast = fast.Next.Next
+	}
+
+	var prev *utils.ListNode
+	current := slow
+
+	for current != nil {
+		next := current.Next
+		current.Next = prev
+		prev = current
+		current = next
+	}
+
+	isPalindrome := true
+	p1, p2 := head, prev
+
+	for p2 != nil {
+		if p1.Val != p2.Val {
+			isPalindrome = false
+			break
+		}
+		p1 = p1.Next
+		p2 = p2.Next
+	}
+
+	return isPalindrome
+}
