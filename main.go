@@ -22,7 +22,7 @@ func main() {
 	//s := "ADOBECODEBANC"
 	//p := "abc"
 	//utils.QuickSort(nums, 0, len(nums)-1)
-	arrayA := []int{1, 2, 3, 4, 5}
+	arrayA := []int{1, 2, 3, 4, 6}
 	//arrayB := []int{5, 6, 4}
 	n := 2
 
@@ -32,7 +32,7 @@ func main() {
 	//headA.Next.Next.Next.Next = headA.Next.Next
 	//headB.Next.Next.Next.Next = headA.Next.Next.Next
 
-	answer := practice.RemoveNthFromEnd(headA.Next, n)
+	answer := practice.ReverseKGroup(headA.Next, n)
 
 	for answer != nil {
 		fmt.Println(answer.Val)

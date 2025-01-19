@@ -704,3 +704,22 @@ func RemoveNthFromEnd(head *utils.ListNode, n int) *utils.ListNode {
 
 	return dummyHead.Next
 }
+
+func SwapPairs(head *utils.ListNode) *utils.ListNode {
+	dummyHead := &utils.ListNode{}
+	dummyHead.Next = head
+
+	current := dummyHead
+
+	for current.Next != nil && current.Next.Next != nil {
+		first, second := current.Next, current.Next.Next
+
+		first.Next = second.Next
+		second.Next = first
+		current.Next = second
+
+		current = first
+	}
+
+	return dummyHead.Next
+}
