@@ -591,3 +591,45 @@ func IsPalindrome(head *utils.ListNode) bool {
 
 	return isPalindrome
 }
+
+func HasCycle(head *utils.ListNode) bool {
+	slow, fast := head, head
+
+	for fast != nil && fast.Next != nil {
+		slow = slow.Next
+		fast = fast.Next.Next
+
+		if slow == fast {
+			return true
+		}
+	}
+
+	return false
+}
+
+func DetectCycle(head *utils.ListNode) *utils.ListNode {
+	slow, fast := head, head
+	hasCycle := false
+
+	for fast != nil && fast.Next != nil {
+		slow = slow.Next
+		fast = fast.Next.Next
+
+		if slow == fast {
+			hasCycle = true
+			break
+		}
+	}
+
+	if !hasCycle {
+		return nil
+	}
+
+	slow = head
+	for slow != fast {
+		slow = slow.Next
+		fast = fast.Next
+	}
+
+	return slow
+}

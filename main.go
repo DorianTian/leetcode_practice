@@ -22,15 +22,17 @@ func main() {
 	//s := "ADOBECODEBANC"
 	//p := "abc"
 	//utils.QuickSort(nums, 0, len(nums)-1)
-	arrayA := []int{1, 2, 2, 1}
+	arrayA := []int{3, 2, 0, -4}
 	//arrayB := []int{5, 6, 1, 8, 4, 5}
 
 	headA := utils.CreateSingleLinkList(arrayA)
+
+	headA.Next.Next.Next.Next = headA.Next.Next
 	//headB := utils.CreateSingleLinkList(arrayB)
 
 	//headB.Next.Next.Next.Next = headA.Next.Next.Next
 
-	answer := practice.IsPalindrome(headA.Next)
+	answer := practice.DetectCycle(headA.Next)
 
 	//for answer != nil {
 	//	fmt.Println(answer.Val)
