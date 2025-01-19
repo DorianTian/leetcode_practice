@@ -723,3 +723,31 @@ func SwapPairs(head *utils.ListNode) *utils.ListNode {
 
 	return dummyHead.Next
 }
+
+func ReverseKGroup(head *utils.ListNode, k int) *utils.ListNode {
+	dummyHead := &utils.ListNode{}
+	dummyHead.Next = head
+	prevGroupEnd := dummyHead
+
+	for {
+		groupStart := prevGroupEnd.Next
+		groupEnd := prevGroupEnd
+
+		for i := 0; i < k && groupEnd != nil; i++ {
+			groupEnd = groupEnd.Next
+		}
+
+		if groupEnd == nil {
+			break
+		}
+
+		nextGroupStart := groupEnd.Next
+		utils.ReverseLinkList(groupStart, groupEnd.Next)
+
+		prevGroupEnd.Next = groupEnd
+		groupStart.Next = nextGroupStart
+		prevGroupEnd = groupStart
+	}
+
+	return dummyHead.Next
+}

@@ -22,7 +22,7 @@ func main() {
 	//s := "ADOBECODEBANC"
 	//p := "abc"
 	//utils.QuickSort(nums, 0, len(nums)-1)
-	arrayA := []int{1, 2, 3, 4, 6}
+	arrayA := []int{1, 2, 3, 4, 5}
 	//arrayB := []int{5, 6, 4}
 	n := 2
 
