@@ -607,7 +607,7 @@ func HasCycle(head *utils.ListNode) bool {
 	return false
 }
 
-func DetectCycle(head *utils.ListNode) *utils.ListNode {
+func DetectCyce(head *utils.ListNode) *utils.ListNode {
 	slow, fast := head, head
 	hasCycle := false
 
@@ -656,6 +656,51 @@ func MergeTwoLists(list1 *utils.ListNode, list2 *utils.ListNode) *utils.ListNode
 	if list2 != nil {
 		current.Next = list2
 	}
+
+	return dummyHead.Next
+}
+
+func AddTwoNumbers(l1 *utils.ListNode, l2 *utils.ListNode) *utils.ListNode {
+	dummyHead := &utils.ListNode{}
+	current := dummyHead
+	carry := 0
+
+	for l1 != nil || l2 != nil || carry != 0 {
+		sum := carry
+		if l1 != nil {
+			sum += l1.Val
+			l1 = l1.Next
+		}
+
+		if l2 != nil {
+			sum += l2.Val
+			l2 = l2.Next
+		}
+
+		carry = sum / 10
+
+		current.Next = &utils.ListNode{Val: sum % 10}
+		current = current.Next
+	}
+
+	return dummyHead.Next
+}
+
+func RemoveNthFromEnd(head *utils.ListNode, n int) *utils.ListNode {
+	dummyHead := &utils.ListNode{}
+	dummyHead.Next = head
+	slow, fast := dummyHead, dummyHead
+
+	for i := 0; i <= n; i++ {
+		fast = fast.Next
+	}
+
+	for fast != nil {
+		fast = fast.Next
+		slow = slow.Next
+	}
+
+	slow.Next = slow.Next.Next
 
 	return dummyHead.Next
 }

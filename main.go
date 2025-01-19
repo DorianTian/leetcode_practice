@@ -22,17 +22,17 @@ func main() {
 	//s := "ADOBECODEBANC"
 	//p := "abc"
 	//utils.QuickSort(nums, 0, len(nums)-1)
-	arrayA := []int{1, 2, 4}
-	arrayB := []int{1, 3, 4}
+	arrayA := []int{1, 2, 3, 4, 5}
+	//arrayB := []int{5, 6, 4}
+	n := 2
 
 	headA := utils.CreateSingleLinkList(arrayA)
+	//headB := utils.CreateSingleLinkList(arrayB)
 
 	//headA.Next.Next.Next.Next = headA.Next.Next
-	headB := utils.CreateSingleLinkList(arrayB)
-
 	//headB.Next.Next.Next.Next = headA.Next.Next.Next
 
-	answer := practice.MergeTwoLists(headA.Next, headB.Next)
+	answer := practice.RemoveNthFromEnd(headA.Next, n)
 
 	for answer != nil {
 		fmt.Println(answer.Val)
