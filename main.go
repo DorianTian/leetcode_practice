@@ -22,17 +22,23 @@ func main() {
 	//s := "ADOBECODEBANC"
 	//p := "abc"
 	//utils.QuickSort(nums, 0, len(nums)-1)
-	arrayA := []int{1, 2, 3, 4, 5}
+	//arrayA := []int{1, 2, 3, 4, 5}
 	//arrayB := []int{5, 6, 4}
-	n := 2
+	arrayC := [][]int{
+		{7, -1},
+		{13, 0},
+		{11, 4},
+		{10, 2},
+	}
+	//n := 2
 
-	headA := utils.CreateSingleLinkList(arrayA)
+	headA := utils.CreateRandomLinkedList(arrayC)
 	//headB := utils.CreateSingleLinkList(arrayB)
 
 	//headA.Next.Next.Next.Next = headA.Next.Next
 	//headB.Next.Next.Next.Next = headA.Next.Next.Next
 
-	answer := practice.ReverseKGroup(headA.Next, n)
+	answer := practice.CopyRandomList(headA)
 
 	for answer != nil {
 		fmt.Println(answer.Val)

@@ -751,3 +751,41 @@ func ReverseKGroup(head *utils.ListNode, k int) *utils.ListNode {
 
 	return dummyHead.Next
 }
+
+func CopyRandomList(head *utils.Node) *utils.Node {
+	if head == nil {
+		return nil
+	}
+
+	current := head
+	for current != nil {
+		copyNode := &utils.Node{Val: current.Val, Next: current.Next, Random: nil}
+		current.Next = copyNode
+		current = copyNode.Next
+	}
+
+	current = head
+	for current != nil {
+		if current.Random != nil {
+			current.Next.Random = current.Random.Next
+		}
+
+		current = current.Next.Next
+	}
+
+	current = head
+	newHead := head.Next
+	for current != nil {
+		copyNode := current.Next
+		current.Next = copyNode.Next
+		if copyNode.Next != nil {
+			copyNode.Next = copyNode.Next.Next
+		} else {
+			copyNode.Next = nil
+		}
+
+		current = current.Next
+	}
+
+	return newHead
+}
