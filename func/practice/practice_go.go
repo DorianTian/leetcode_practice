@@ -6,11 +6,6 @@ import (
 	"sort"
 )
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 func LongestConsecutive(nums []int) int {
 	hasIteratedNumber := make(map[int]struct{})
 	longest := 0
@@ -788,4 +783,16 @@ func CopyRandomList(head *utils.Node) *utils.Node {
 	}
 
 	return newHead
+}
+
+func SortList(head *utils.ListNode) *utils.ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+
+	mid := utils.GetListMid(head)
+	left := SortList(head)
+	right := SortList(mid)
+
+	return utils.MergeLinkList(left, right)
 }
