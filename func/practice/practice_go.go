@@ -1,6 +1,7 @@
 package practice
 
 import (
+	"container/heap"
 	"fmt"
 	"leetcode_practice/func/utils"
 	"sort"
@@ -795,4 +796,30 @@ func SortList(head *utils.ListNode) *utils.ListNode {
 	right := SortList(mid)
 
 	return utils.MergeLinkList(left, right)
+}
+
+func MergeKLists(lists []*utils.ListNode) *utils.ListNode {
+	pg := &utils.PriorityQueue{}
+	heap.Init(pg)
+
+	for _, list := range lists {
+		if list != nil {
+			heap.Push(pg, list)
+		}
+	}
+
+	dummyHead := &utils.ListNode{}
+	current := dummyHead
+
+	for pg.Len() > 0 {
+		minNode := heap.Pop(pg).(*utils.ListNode)
+		current.Next = minNode
+		current = current.Next
+
+		if minNode.Next != nil {
+			heap.Push(pg, minNode.Next)
+		}
+	}
+
+	return dummyHead.Next
 }

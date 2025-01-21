@@ -22,23 +22,22 @@ func main() {
 	//s := "ADOBECODEBANC"
 	//p := "abc"
 	//utils.QuickSort(nums, 0, len(nums)-1)
-	arrayA := []int{4, 2, 1, 3}
+	//arrayA := []int{4, 2, 1, 3}
 	//arrayB := []int{5, 6, 4}
-	//arrayC := [][]int{
-	//	{7, -1},
-	//	{13, 0},
-	//	{11, 4},
-	//	{10, 2},
-	//}
+	arrayA := [][]int{
+		{1, 4, 5},
+		{1, 3, 4},
+		{2, 6},
+	}
 	//n := 2
 
 	//headA := utils.CreateRandomLinkedList(arrayA)
-	headA := utils.CreateSingleLinkList(arrayA)
+	headA := utils.CreateLinkedListArray(arrayA)
 
 	//headA.Next.Next.Next.Next = headA.Next.Next
 	//headB.Next.Next.Next.Next = headA.Next.Next.Next
 
-	answer := practice.SortList(headA)
+	answer := practice.MergeKLists(headA)
 
 	for answer != nil {
 		fmt.Println(answer.Val)
