@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"leetcode_practice/func/utils"
+	"leetcode_practice/func/classification"
 )
 
 func main() {
@@ -35,8 +35,9 @@ func main() {
 
 	//headA.Next.Next.Next.Next = headA.Next.Next
 	//headB.Next.Next.Next.Next = headA.Next.Next.Next
-
-	//answer := practice.MergeKLists(headA)
+	nums := []string{"eat", "tea", "tan", "ate", "nat", "bat"}
+	//target := 9
+	answer := classification.GroupAnagrams(nums)
 
 	//for answer != nil {
 	//	fmt.Println(answer.Val)
@@ -44,18 +45,18 @@ func main() {
 	//}
 
 	//fmt.Printf("nums: %v\n", nums)
-	//fmt.Printf("answer: %v\n", answer)
+	fmt.Printf("answer: %v\n", answer)
 
-	cache := utils.Constructor(2)
-
-	// 向缓存插入数据
-	cache.Put(1, 1)           // 缓存是 {1=1}
-	cache.Put(2, 2)           // 缓存是 {1=1, 2=2}
-	fmt.Println(cache.Get(1)) // 返回 1
-	cache.Put(3, 3)           // 该操作会使得 key 2 被逐出，缓存是 {1=1, 3=3}
-	fmt.Println(cache.Get(2)) // 返回 -1 (未找到)
-	cache.Put(4, 4)           // 该操作会使得 key 1 被逐出，缓存是 {4=4, 3=3}
-	fmt.Println(cache.Get(1)) // 返回 -1 (未找到)
-	fmt.Println(cache.Get(3)) // 返回 3
-	fmt.Println(cache.Get(4)) // 返回 4
+	//cache := utils.Constructor(2)
+	//
+	//// 向缓存插入数据
+	//cache.Put(1, 1)           // 缓存是 {1=1}
+	//cache.Put(2, 2)           // 缓存是 {1=1, 2=2}
+	//fmt.Println(cache.Get(1)) // 返回 1
+	//cache.Put(3, 3)           // 该操作会使得 key 2 被逐出，缓存是 {1=1, 3=3}
+	//fmt.Println(cache.Get(2)) // 返回 -1 (未找到)
+	//cache.Put(4, 4)           // 该操作会使得 key 1 被逐出，缓存是 {4=4, 3=3}
+	//fmt.Println(cache.Get(1)) // 返回 -1 (未找到)
+	//fmt.Println(cache.Get(3)) // 返回 3
+	//fmt.Println(cache.Get(4)) // 返回 4
 }
