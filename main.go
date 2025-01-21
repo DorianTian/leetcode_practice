@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"leetcode_practice/func/practice"
 	"leetcode_practice/func/utils"
 )
 
@@ -24,26 +23,39 @@ func main() {
 	//utils.QuickSort(nums, 0, len(nums)-1)
 	//arrayA := []int{4, 2, 1, 3}
 	//arrayB := []int{5, 6, 4}
-	arrayA := [][]int{
-		{1, 4, 5},
-		{1, 3, 4},
-		{2, 6},
-	}
+	//arrayA := [][]int{
+	//	{1, 4, 5},
+	//	{1, 3, 4},
+	//	{2, 6},
+	//}
 	//n := 2
 
 	//headA := utils.CreateRandomLinkedList(arrayA)
-	headA := utils.CreateLinkedListArray(arrayA)
+	//headA := utils.CreateLinkedListArray(arrayA)
 
 	//headA.Next.Next.Next.Next = headA.Next.Next
 	//headB.Next.Next.Next.Next = headA.Next.Next.Next
 
-	answer := practice.MergeKLists(headA)
+	//answer := practice.MergeKLists(headA)
 
-	for answer != nil {
-		fmt.Println(answer.Val)
-		answer = answer.Next
-	}
+	//for answer != nil {
+	//	fmt.Println(answer.Val)
+	//	answer = answer.Next
+	//}
 
 	//fmt.Printf("nums: %v\n", nums)
-	fmt.Printf("answer: %v\n", answer)
+	//fmt.Printf("answer: %v\n", answer)
+
+	cache := utils.Constructor(2)
+
+	// 向缓存插入数据
+	cache.Put(1, 1)           // 缓存是 {1=1}
+	cache.Put(2, 2)           // 缓存是 {1=1, 2=2}
+	fmt.Println(cache.Get(1)) // 返回 1
+	cache.Put(3, 3)           // 该操作会使得 key 2 被逐出，缓存是 {1=1, 3=3}
+	fmt.Println(cache.Get(2)) // 返回 -1 (未找到)
+	cache.Put(4, 4)           // 该操作会使得 key 1 被逐出，缓存是 {4=4, 3=3}
+	fmt.Println(cache.Get(1)) // 返回 -1 (未找到)
+	fmt.Println(cache.Get(3)) // 返回 3
+	fmt.Println(cache.Get(4)) // 返回 4
 }
