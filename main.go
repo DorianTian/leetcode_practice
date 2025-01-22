@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"leetcode_practice/func/classification"
+	"leetcode_practice/func/utils"
 )
 
 func main() {
@@ -21,7 +22,7 @@ func main() {
 	//s := "ADOBECODEBANC"
 	//p := "abc"
 	//utils.QuickSort(nums, 0, len(nums)-1)
-	//arrayA := []int{4, 2, 1, 3}
+	arrayA := []*int{utils.IntPtr(3), utils.IntPtr(9), utils.IntPtr(20), nil, nil, utils.IntPtr(15), utils.IntPtr(7)}
 	//arrayB := []int{5, 6, 4}
 	//arrayA := [][]int{
 	//	{1, 4, 5},
@@ -31,13 +32,14 @@ func main() {
 	//n := 2
 
 	//headA := utils.CreateRandomLinkedList(arrayA)
-	//headA := utils.CreateLinkedListArray(arrayA)
+	//headA := utils.CreateSingleLinkList(arrayA)
+	levelTree := utils.CreateBinaryTreeByLevel(arrayA)
 
 	//headA.Next.Next.Next.Next = headA.Next.Next
 	//headB.Next.Next.Next.Next = headA.Next.Next.Next
-	nums := []string{"eat", "tea", "tan", "ate", "nat", "bat"}
+	//nums := []string{"eat", "tea", "tan", "ate", "nat", "bat"}
 	//target := 9
-	answer := classification.GroupAnagrams(nums)
+	answer := classification.MaxDepth(levelTree)
 
 	//for answer != nil {
 	//	fmt.Println(answer.Val)
