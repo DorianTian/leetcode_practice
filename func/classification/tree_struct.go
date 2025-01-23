@@ -148,3 +148,27 @@ func LevelOrder(root *utils.TreeNode) [][]int {
 
 	return result
 }
+
+func SortedArrayToBST(nums []int) *utils.TreeNode {
+	if len(nums) == 0 {
+		return nil
+	}
+
+	var buildSortTree func(left, right int) *utils.TreeNode
+
+	buildSortTree = func(left, right int) *utils.TreeNode {
+		if left > right {
+			return nil
+		}
+
+		mid := (left + right) / 2
+		node := &utils.TreeNode{Val: nums[mid]}
+
+		node.Left = buildSortTree(left, mid-1)
+		node.Right = buildSortTree(mid+1, right)
+
+		return node
+	}
+
+	return buildSortTree(0, len(nums)-1)
+}

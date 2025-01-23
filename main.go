@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"leetcode_practice/func/classification"
-	"leetcode_practice/func/utils"
 )
 
 func main() {
@@ -23,15 +22,15 @@ func main() {
 	//p := "abc"
 	//utils.QuickSort(nums, 0, len(nums)-1)
 	//arrayA := []*int{utils.IntPtr(3), utils.IntPtr(9), utils.IntPtr(20), nil, nil, utils.IntPtr(15), utils.IntPtr(7)}
-	arrayA := []*int{
-		utils.IntPtr(3),
-		utils.IntPtr(9),
-		utils.IntPtr(20),
-		nil,
-		nil,
-		utils.IntPtr(15),
-		utils.IntPtr(7),
-	}
+	//arrayA := []*int{
+	//	utils.IntPtr(-10),
+	//	utils.IntPtr(-3),
+	//	utils.IntPtr(0),
+	//	utils.IntPtr(5),
+	//	utils.IntPtr(9),
+	//}
+	arrayA := []int{-10, -3, 0, 5, 9}
+
 	//arrayA := [][]int{
 	//	{1, 4, 5},
 	//	{1, 3, 4},
@@ -41,13 +40,13 @@ func main() {
 
 	//headA := utils.CreateRandomLinkedList(arrayA)
 	//headA := utils.CreateSingleLinkList(arrayA)
-	levelTree := utils.CreateBinaryTreeByLevel(arrayA)
+	//levelTree := utils.CreateBinaryTreeByLevel(arrayA)
 
 	//headA.Next.Next.Next.Next = headA.Next.Next
 	//headB.Next.Next.Next.Next = headA.Next.Next.Next
 	//nums := []string{"eat", "tea", "tan", "ate", "nat", "bat"}
 	//target := 9
-	answer := classification.LevelOrder(levelTree)
+	answer := classification.SortedArrayToBST(arrayA)
 
 	//for answer != nil {
 	//	fmt.Println(answer.Val)
