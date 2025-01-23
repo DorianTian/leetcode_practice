@@ -23,7 +23,15 @@ func main() {
 	//p := "abc"
 	//utils.QuickSort(nums, 0, len(nums)-1)
 	//arrayA := []*int{utils.IntPtr(3), utils.IntPtr(9), utils.IntPtr(20), nil, nil, utils.IntPtr(15), utils.IntPtr(7)}
-	arrayA := []*int{utils.IntPtr(1), utils.IntPtr(2), utils.IntPtr(2), utils.IntPtr(3), utils.IntPtr(4), utils.IntPtr(4), utils.IntPtr(3)}
+	arrayA := []*int{
+		utils.IntPtr(3),
+		utils.IntPtr(9),
+		utils.IntPtr(20),
+		nil,
+		nil,
+		utils.IntPtr(15),
+		utils.IntPtr(7),
+	}
 	//arrayA := [][]int{
 	//	{1, 4, 5},
 	//	{1, 3, 4},
@@ -39,7 +47,7 @@ func main() {
 	//headB.Next.Next.Next.Next = headA.Next.Next.Next
 	//nums := []string{"eat", "tea", "tan", "ate", "nat", "bat"}
 	//target := 9
-	answer := classification.IsSymmetric(levelTree)
+	answer := classification.LevelOrder(levelTree)
 
 	//for answer != nil {
 	//	fmt.Println(answer.Val)

@@ -114,3 +114,37 @@ func DiameterOfBinaryTree(root *utils.TreeNode) int {
 
 	return maxDepth
 }
+
+func LevelOrder(root *utils.TreeNode) [][]int {
+	result := make([][]int, 0)
+
+	if root == nil {
+		return result
+	}
+
+	queue := []*utils.TreeNode{root}
+
+	for len(queue) > 0 {
+		size := len(queue)
+		levelValues := make([]int, 0)
+
+		for i := 0; i < size; i++ {
+			node := queue[0]
+			queue = queue[1:]
+
+			levelValues = append(levelValues, node.Val)
+
+			if node.Left != nil {
+				queue = append(queue, node.Left)
+			}
+
+			if node.Right != nil {
+				queue = append(queue, node.Right)
+			}
+		}
+
+		result = append(result, levelValues)
+	}
+
+	return result
+}
