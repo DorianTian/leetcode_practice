@@ -47,3 +47,70 @@ func MaxDepth(root *utils.TreeNode) int {
 
 	return depth
 }
+
+func InvertTree(root *utils.TreeNode) *utils.TreeNode {
+	if root == nil {
+		return nil
+	}
+
+	temporaryNode := root.Left
+	root.Left = root.Right
+	root.Right = temporaryNode
+
+	if root.Right != nil {
+		InvertTree(root.Right)
+	}
+	if root.Left != nil {
+		InvertTree(root.Left)
+	}
+
+	return root
+}
+
+func IsSymmetric(root *utils.TreeNode) bool {
+	if root == nil {
+		return false
+	}
+
+	queue := []*utils.TreeNode{root.Left, root.Right}
+
+	for len(queue) > 0 {
+		left := queue[0]
+		queue = queue[1:]
+		right := queue[0]
+		queue = queue[1:]
+
+		if left == nil && right == nil {
+			continue
+		}
+
+		if left == nil || right == nil || left.Val != right.Val {
+			return false
+		}
+
+		queue = append(queue, left.Left, right.Right)
+		queue = append(queue, right.Left, left.Right)
+	}
+
+	return true
+}
+
+func DiameterOfBinaryTree(root *utils.TreeNode) int {
+	maxDepth := 0
+
+	var dfs func(node *utils.TreeNode) int
+	dfs = func(root *utils.TreeNode) int {
+		if root == nil {
+			return 0
+		}
+
+		leftDepth := dfs(root.Left)
+		rightDepth := dfs(root.Right)
+
+		maxDepth = max(maxDepth, leftDepth+rightDepth)
+
+		return 1 + max(leftDepth, rightDepth)
+	}
+
+	return maxDepth
+}
