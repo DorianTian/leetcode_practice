@@ -196,3 +196,27 @@ func IsValidBST(root *utils.TreeNode) bool {
 
 	return validBST(root, nil, nil)
 }
+
+func KthSmallest(root *utils.TreeNode, k int) int {
+	count := 0
+	kthValue := 0
+
+	var inorder func(node *utils.TreeNode)
+	inorder = func(node *utils.TreeNode) {
+		if node == nil {
+			return
+		}
+
+		inorder(node.Left)
+		count++
+		if count == k {
+			kthValue = node.Val
+			return
+		}
+		inorder(node.Right)
+	}
+
+	inorder(root)
+
+	return kthValue
+}
