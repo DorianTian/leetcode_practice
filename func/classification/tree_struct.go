@@ -220,3 +220,33 @@ func KthSmallest(root *utils.TreeNode, k int) int {
 
 	return kthValue
 }
+
+func RightSideView(root *utils.TreeNode) []int {
+	if root == nil {
+		return nil
+	}
+	rightViews := make([]int, 0)
+	queue := []*utils.TreeNode{root}
+
+	for len(queue) > 0 {
+		size := len(queue)
+		tempNode := queue[0]
+
+		for i := 0; i < size; i++ {
+			tempNode = queue[0]
+			queue = queue[1:]
+
+			if tempNode.Left != nil {
+				queue = append(queue, tempNode.Left)
+			}
+
+			if tempNode.Right != nil {
+				queue = append(queue, tempNode.Right)
+			}
+		}
+
+		rightViews = append(rightViews, tempNode.Val)
+	}
+
+	return rightViews
+}
