@@ -250,3 +250,29 @@ func RightSideView(root *utils.TreeNode) []int {
 
 	return rightViews
 }
+
+func Flatten(root *utils.TreeNode) {
+	var prev *utils.TreeNode
+	var preorder func(node *utils.TreeNode)
+
+	preorder = func(node *utils.TreeNode) {
+		if node == nil {
+			return
+		}
+
+		left := node.Left
+		right := node.Right
+
+		if prev != nil {
+			prev.Right = node
+			prev.Left = nil
+		}
+
+		prev = node
+
+		preorder(left)
+		preorder(right)
+	}
+
+	preorder(root)
+}
