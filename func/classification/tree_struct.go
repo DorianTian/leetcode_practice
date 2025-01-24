@@ -1,6 +1,8 @@
 package classification
 
-import "leetcode_practice/func/utils"
+import (
+	"leetcode_practice/func/utils"
+)
 
 func InorderTraversal(root *utils.TreeNode) []int {
 	var inorderList []int
@@ -171,4 +173,26 @@ func SortedArrayToBST(nums []int) *utils.TreeNode {
 	}
 
 	return buildSortTree(0, len(nums)-1)
+}
+
+func IsValidBST(root *utils.TreeNode) bool {
+	if root == nil {
+		return true
+	}
+
+	var validBST func(node *utils.TreeNode, min *int, max *int) bool
+
+	validBST = func(node *utils.TreeNode, min *int, max *int) bool {
+		if node == nil {
+			return true
+		}
+
+		if (min != nil && node.Val <= *min) || (max != nil && node.Val >= *max) {
+			return false
+		}
+
+		return validBST(node.Left, min, &node.Val) && validBST(node.Right, &node.Val, max)
+	}
+
+	return validBST(root, nil, nil)
 }
