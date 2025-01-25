@@ -276,3 +276,27 @@ func Flatten(root *utils.TreeNode) {
 
 	preorder(root)
 }
+
+func BuildTree(preorder []int, inorder []int) *utils.TreeNode {
+	inorderMap := make(map[int]int)
+	for idx, value := range inorder {
+		inorderMap[value] = idx
+	}
+
+	var build func(inorderStart int, inorderEnd int, preorderStart int, preorderEnd int) *utils.TreeNode
+	build = func(inorderStart int, inorderEnd int, preorderStart int, preorderEnd int) *utils.TreeNode {
+		if inorderStart > inorderEnd || preorderStart > preorderEnd {
+			return nil
+		}
+
+		rootValue := preorder[preorderStart]
+		root := &utils.TreeNode{Val: rootValue}
+		rootIndex := inorderMap[rootValue]
+		leftLen := rootIndex - inorderStart
+
+		root.Left = build(inorderStart, rootIndex-1, preorderStart+1, preorderStart+leftLen)
+		root.Right = build(rootIndex+1, inorderEnd, preorderStart+leftLen+1, preorderEnd)
+	}
+
+	return build(0, len(inorder)-1, 0, len(preorder)-1)
+}
