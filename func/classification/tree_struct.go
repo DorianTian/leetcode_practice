@@ -300,3 +300,27 @@ func BuildTree(preorder []int, inorder []int) *utils.TreeNode {
 
 	return build(0, len(inorder)-1, 0, len(preorder)-1)
 }
+
+func PathSum(root *utils.TreeNode, targetSum int) int {
+	prefixSum := map[int]int{0: 1}
+
+	var dfs func(node *utils.TreeNode, currentSum int, target int, prefixSum map[int]int) int
+	dfs = func(node *utils.TreeNode, currentSum int, target int, prefixSum map[int]int) int {
+		if node == nil {
+			return 0
+		}
+
+		currentSum += node.Val
+		count := prefixSum[currentSum-target]
+		prefixSum[currentSum]++
+
+		count += dfs(node.Left, currentSum, target, prefixSum)
+		count += dfs(node.Right, currentSum, target, prefixSum)
+
+		prefixSum[currentSum]--
+
+		return count
+	}
+
+	return dfs(root, 0, targetSum, prefixSum)
+}
