@@ -324,3 +324,24 @@ func PathSum(root *utils.TreeNode, targetSum int) int {
 
 	return dfs(root, 0, targetSum, prefixSum)
 }
+
+func LowestCommonAncestor(root, p, q *utils.TreeNode) *utils.TreeNode {
+	if root == nil || root == p || root == q {
+		return root
+	}
+
+	left := LowestCommonAncestor(root.Left, p, q)
+	right := LowestCommonAncestor(root.Right, p, q)
+
+	if left != nil && right != nil {
+		return root
+	}
+
+	if left != nil {
+		return left
+	} else if right != nil {
+		return right
+	}
+
+	return nil
+}
