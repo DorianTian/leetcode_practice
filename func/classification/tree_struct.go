@@ -2,6 +2,7 @@ package classification
 
 import (
 	"leetcode_practice/func/utils"
+	"math"
 )
 
 func InorderTraversal(root *utils.TreeNode) []int {
@@ -344,4 +345,27 @@ func LowestCommonAncestor(root, p, q *utils.TreeNode) *utils.TreeNode {
 	}
 
 	return nil
+}
+
+func MaxPathSum(root *TreeNode) int {
+	var maxSum = -math.MaxInt64
+
+	var dfs func(node *utils.TreeNode) int
+	dfs = func(node *utils.TreeNode) int {
+		if node == nil {
+			return 0
+		}
+
+		leftSum := max(dfs(node.Left), 0)
+		rightSum := max(dfs(node.Right), 0)
+
+		currentSum := node.Val + leftSum + rightSum
+
+		maxSum = max(maxSum, currentSum)
+		return node.Val + max(leftSum, rightSum)
+	}
+
+	dfs(root)
+
+	return maxSum
 }
