@@ -79,3 +79,39 @@ func OrangesRotting(grid [][]int) int {
 
 	return max(minCounts-1, 0)
 }
+
+func canFinish(numCourses int, prerequisites [][]int) bool {
+	graph := make([][]int, numCourses)
+	inDegree := make([]int, numCourses)
+	count := 0
+
+	for _, info := range prerequisites {
+		course := info[0]
+		pre := info[1]
+		graph[pre] = append(graph[pre], course)
+		inDegree[course]++
+	}
+
+	queue := make([]int, 0, numCourses)
+
+	for i := 0; i < numCourses; i++ {
+		if inDegree[i] == 0 {
+			queue = append(queue, i)
+		}
+	}
+
+	for len(queue) > 0 {
+		current := queue[0]
+		queue = queue[1:]
+		count++
+
+		for _, neighbor := range graph[current] {
+			inDegree[neighbor]--
+			if inDegree[neighbor] == 0 {
+				queue = append(queue, neighbor)
+			}
+		}
+	}
+
+	return count == numCourses
+}
