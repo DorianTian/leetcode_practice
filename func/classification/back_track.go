@@ -144,3 +144,38 @@ func GenerateParenthesis(n int) []string {
 	backtrack("", 0, 0)
 	return result
 }
+
+func Exist(board [][]byte, word string) bool {
+	rows, cols := len(board), len(board[0])
+
+	var backtrack func(row, col, index int) bool
+	backtrack = func(row, col, index int) bool {
+		if index == len(word) {
+			return true
+		}
+
+		if row < 0 || row >= rows || col < 0 || col >= cols || board[row][col] != word[index] {
+			return false
+		}
+
+		temp := board[row][col]
+		board[row][col] = '#'
+
+		result :=
+			backtrack(row-1, col, index+1) || backtrack(row+1, col, index+1) ||
+				backtrack(row, col+1, index+1) || backtrack(row, col-1, index+1)
+
+		board[row][col] = temp
+		return result
+	}
+
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
+			if backtrack(i, j, 0) {
+				return true
+			}
+		}
+	}
+
+	return false
+}
