@@ -34,3 +34,24 @@ func permute(nums []int) [][]int {
 	backtrack(nums)
 	return result
 }
+
+func subsets(nums []int) [][]int {
+	var result [][]int
+	var currentSubset []int
+
+	var backtrack func(start int)
+	backtrack = func(start int) {
+		subsetCopy := append([]int(nil), currentSubset...)
+		result = append(result, subsetCopy)
+
+		for i := start; i < len(nums); i++ {
+			currentSubset = append(currentSubset, nums[i])
+			backtrack(i + 1)
+			currentSubset = currentSubset[:len(currentSubset)-1]
+		}
+	}
+
+	backtrack(0)
+
+	return result
+}
