@@ -1,5 +1,7 @@
 package classification
 
+import "sort"
+
 func permute(nums []int) [][]int {
 	var result [][]int
 	var temp []int
@@ -88,6 +90,34 @@ func LetterCombinations(digits string) []string {
 	}
 
 	backtrack(0, "")
+
+	return result
+}
+
+func CombinationSum(candidates []int, target int) [][]int {
+	var result [][]int
+	var currentCombination []int
+	var backtrack func(start int, remainTarget int)
+
+	backtrack = func(start int, remainTarget int) {
+		if remainTarget == 0 {
+			result = append(result, append([]int(nil), currentCombination...))
+			return
+		}
+
+		for i := start; i < len(candidates); i++ {
+			if candidates[i] > remainTarget {
+				break
+			}
+
+			currentCombination = append(currentCombination, candidates[i])
+			backtrack(i, remainTarget-candidates[i])
+			currentCombination = currentCombination[:len(currentCombination)-1]
+		}
+	}
+
+	sort.Ints(candidates)
+	backtrack(0, target)
 
 	return result
 }

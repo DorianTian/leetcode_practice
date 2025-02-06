@@ -47,8 +47,9 @@ func main() {
 	//headB.Next.Next.Next.Next = headA.Next.Next.Next
 	//nums := []string{"eat", "tea", "tan", "ate", "nat", "bat"}
 	//target := 9
-	digits := "23"
-	answer := classification.LetterCombinations(digits)
+	//digits := "23"
+	candidates := []int{2, 3, 6, 7}
+	answer := classification.CombinationSum(candidates, 7)
 
 	//for answer != nil {
 	//	fmt.Println(answer.Val)
