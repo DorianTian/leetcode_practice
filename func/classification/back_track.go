@@ -121,3 +121,26 @@ func CombinationSum(candidates []int, target int) [][]int {
 
 	return result
 }
+
+func GenerateParenthesis(n int) []string {
+	var result []string
+	var backtrack func(currentCombination string, left int, right int)
+
+	backtrack = func(currentCombination string, left int, right int) {
+		if len(currentCombination) == n*2 {
+			result = append(result, currentCombination)
+			return
+		}
+
+		if left < n {
+			backtrack(currentCombination+"(", left+1, right)
+		}
+
+		if right < left {
+			backtrack(currentCombination+")", left, right+1)
+		}
+	}
+
+	backtrack("", 0, 0)
+	return result
+}

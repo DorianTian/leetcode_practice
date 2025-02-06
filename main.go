@@ -48,8 +48,8 @@ func main() {
 	//nums := []string{"eat", "tea", "tan", "ate", "nat", "bat"}
 	//target := 9
 	//digits := "23"
-	candidates := []int{2, 3, 6, 7}
-	answer := classification.CombinationSum(candidates, 7)
+	//candidates := []int{2, 3, 6, 7}
+	answer := classification.GenerateParenthesis(3)
 
 	//for answer != nil {
 	//	fmt.Println(answer.Val)
