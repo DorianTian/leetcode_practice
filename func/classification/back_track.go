@@ -55,3 +55,39 @@ func subsets(nums []int) [][]int {
 
 	return result
 }
+
+func LetterCombinations(digits string) []string {
+	if digits == "" {
+		return nil
+	}
+
+	strDigits := []rune(digits)
+	var result []string
+	phoneMap := map[rune]string{
+		'2': "abc",
+		'3': "def",
+		'4': "ghi",
+		'5': "jkl",
+		'6': "mno",
+		'7': "pqrs",
+		'8': "tuv",
+		'9': "wxyz",
+	}
+
+	var backtrack func(start int, current string)
+	backtrack = func(start int, current string) {
+		if start == len(digits) {
+			result = append(result, current)
+			return
+		}
+
+		letters := phoneMap[strDigits[start]]
+		for _, letter := range letters {
+			backtrack(start+1, current+string(letter))
+		}
+	}
+
+	backtrack(0, "")
+
+	return result
+}

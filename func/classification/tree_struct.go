@@ -297,6 +297,8 @@ func BuildTree(preorder []int, inorder []int) *utils.TreeNode {
 
 		root.Left = build(inorderStart, rootIndex-1, preorderStart+1, preorderStart+leftLen)
 		root.Right = build(rootIndex+1, inorderEnd, preorderStart+leftLen+1, preorderEnd)
+
+		return root
 	}
 
 	return build(0, len(inorder)-1, 0, len(preorder)-1)
@@ -347,7 +349,7 @@ func LowestCommonAncestor(root, p, q *utils.TreeNode) *utils.TreeNode {
 	return nil
 }
 
-func MaxPathSum(root *TreeNode) int {
+func MaxPathSum(root *utils.TreeNode) int {
 	var maxSum = -math.MaxInt64
 
 	var dfs func(node *utils.TreeNode) int

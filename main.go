@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"leetcode_practice/func/classification"
-	"leetcode_practice/func/utils"
 )
 
 func main() {
@@ -23,7 +22,7 @@ func main() {
 	//p := "abc"
 	//utils.QuickSort(nums, 0, len(nums)-1)
 	// 5,1,4,null,null,3,6
-	arrayA := []*int{utils.IntPtr(1), utils.IntPtr(2), utils.IntPtr(3), utils.IntPtr(4), nil, nil, nil, utils.IntPtr(5)}
+	//arrayA := []*int{utils.IntPtr(1), utils.IntPtr(2), utils.IntPtr(3), utils.IntPtr(4), nil, nil, nil, utils.IntPtr(5)}
 	//arrayA := []*int{
 	//	utils.IntPtr(-10),
 	//	utils.IntPtr(-3),
@@ -42,13 +41,14 @@ func main() {
 
 	//headA := utils.CreateRandomLinkedList(arrayA)
 	//headA := utils.CreateSingleLinkList(arrayA)
-	levelTree := utils.CreateBinaryTreeByLevel(arrayA)
+	//levelTree := utils.CreateBinaryTreeByLevel(arrayA)
 
 	//headA.Next.Next.Next.Next = headA.Next.Next
 	//headB.Next.Next.Next.Next = headA.Next.Next.Next
 	//nums := []string{"eat", "tea", "tan", "ate", "nat", "bat"}
 	//target := 9
-	answer := classification.RightSideView(levelTree)
+	digits := "23"
+	answer := classification.LetterCombinations(digits)
 
 	//for answer != nil {
 	//	fmt.Println(answer.Val)
