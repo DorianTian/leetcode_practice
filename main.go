@@ -49,7 +49,7 @@ func main() {
 	//target := 9
 	//digits := "23"
 	//candidates := []int{2, 3, 6, 7}
-	answer := classification.GenerateParenthesis(3)
+	answer := classification.Partition("aab")
 
 	//for answer != nil {
 	//	fmt.Println(answer.Val)

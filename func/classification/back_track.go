@@ -179,3 +179,44 @@ func Exist(board [][]byte, word string) bool {
 
 	return false
 }
+
+func Partition(s string) [][]string {
+	var result [][]string
+	var currentPartition []string
+
+	var isPalindrome func(s string) bool
+	isPalindrome = func(s string) bool {
+		left, right := 0, len(s)-1
+		for left < right {
+			if s[left] != s[right] {
+				return false
+			}
+
+			left++
+			right--
+		}
+
+		return true
+	}
+
+	var backtrack func(start int)
+	backtrack = func(start int) {
+		if start == len(s) {
+			result = append(result, append([]string(nil), currentPartition...))
+			return
+		}
+
+		for i := start + 1; i <= len(s); i++ {
+			substr := s[start:i]
+			if isPalindrome(substr) {
+				currentPartition = append(currentPartition, substr)
+				backtrack(i)
+				currentPartition = currentPartition[:len(currentPartition)-1]
+			}
+		}
+	}
+
+	backtrack(0)
+
+	return result
+}
