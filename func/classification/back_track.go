@@ -220,3 +220,53 @@ func Partition(s string) [][]string {
 
 	return result
 }
+
+func SolveNQueens(n int) [][]string {
+	var result [][]string
+	var board []string
+
+	columns := make([]bool, n)
+	mainDiagonal := make([]bool, 2*n-1)
+	antiDiagonal := make([]bool, 2*n-1)
+	var backtrack func(row int)
+	var generateBoard func(col, n int) string
+
+	generateBoard = func(col, n int) string {
+		board := make([]byte, n)
+		for i := 0; i < n; i++ {
+			if i == col {
+				board[i] = 'Q'
+			} else {
+				board[i] = '.'
+			}
+		}
+
+		return string(board)
+	}
+
+	backtrack = func(row int) {
+		if row == n {
+			result = append(result, append([]string(nil), board...))
+			return
+		}
+
+		for col := 0; col < n; col++ {
+			if columns[col] || mainDiagonal[row-col+n-1] || antiDiagonal[row+col] {
+				continue
+			}
+			board[row] = generateBoard(col, n)
+			columns[col] = true
+			antiDiagonal[row+col] = true
+			mainDiagonal[row-col+n-1] = true
+
+			backtrack(row + 1)
+			columns[col] = false
+			antiDiagonal[row+col] = false
+			mainDiagonal[row-col+n-1] = false
+		}
+	}
+
+	board = make([]string, n)
+	backtrack(0)
+	return result
+}
