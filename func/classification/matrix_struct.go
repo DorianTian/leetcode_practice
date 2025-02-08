@@ -110,7 +110,7 @@ func RotateMatrix(matrix [][]int) [][]int {
 	return matrix
 }
 
-func SearchMatrix(matrix [][]int, target int) bool {
+func SearchMatrix2(matrix [][]int, target int) bool {
 	rows := len(matrix)
 	cols := len(matrix[0])
 
