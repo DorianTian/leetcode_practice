@@ -30,7 +30,7 @@ func main() {
 	//	utils.IntPtr(5),
 	//	utils.IntPtr(9),
 	//}
-	//arrayA := []int{-10, -3, 0, 5, 9}
+	arrayA := []int{1, 3, 5, 6}
 
 	//arrayA := [][]int{
 	//	{1, 4, 5},
@@ -49,7 +49,7 @@ func main() {
 	//target := 9
 	//digits := "23"
 	//candidates := []int{2, 3, 6, 7}
-	answer := classification.SolveNQueens(4)
+	answer := classification.SearchInsert(arrayA, 2)
 
 	//for answer != nil {
 	//	fmt.Println(answer.Val)
