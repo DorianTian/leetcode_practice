@@ -30,7 +30,7 @@ func main() {
 	//	utils.IntPtr(5),
 	//	utils.IntPtr(9),
 	//}
-	arrayA := []int{5, 7, 7, 8, 8, 10}
+	arrayA := []int{1, 3}
 
 	//arrayA := [][]int{
 	//	{1, 4, 5},
@@ -49,7 +49,7 @@ func main() {
 	//target := 9
 	//digits := "23"
 	//candidates := []int{2, 3, 6, 7}
-	answer := classification.SearchRange(arrayA, 8)
+	answer := classification.Search(arrayA, 3)
 
 	//for answer != nil {
 	//	fmt.Println(answer.Val)
