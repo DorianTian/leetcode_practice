@@ -30,7 +30,7 @@ func main() {
 	//	utils.IntPtr(5),
 	//	utils.IntPtr(9),
 	//}
-	arrayA := []int{3, 1, 2}
+	//arrayA := []int{3, 1, 2}
 
 	//arrayA := [][]int{
 	//	{1, 4, 5},
@@ -49,7 +49,8 @@ func main() {
 	//target := 9
 	//digits := "23"
 	//candidates := []int{2, 3, 6, 7}
-	answer := classification.FindMin(arrayA)
+	s := "()[]{}"
+	answer := classification.IsValid(s)
 
 	//for answer != nil {
 	//	fmt.Println(answer.Val)
