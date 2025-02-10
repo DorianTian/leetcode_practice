@@ -1,5 +1,7 @@
 package classification
 
+import "unicode"
+
 func IsValid(s string) bool {
 	var stack []string
 	bracketMap := map[string]string{
@@ -71,4 +73,45 @@ func (this *MinStack) GetMin() int {
 	}
 
 	return this.minStack[len(this.minStack)-1]
+}
+
+func decodeString(s string) string {
+	var stack []interface{}
+	var currentString string
+	var currentNumber int
+
+	var repeatString func(repeatCount int, currentString string) string
+	repeatString = func(repeatCount int, currentString string) string {
+		result := ""
+
+		for i := 0; i < repeatCount; i++ {
+			result += currentString
+		}
+
+		return result
+	}
+
+	for i := 0; i < len(s); i++ {
+		char := s[i]
+
+		if unicode.IsDigit(rune(char)) {
+			currentNumber = currentNumber*10 + int(char-'0')
+		} else if char == '[' {
+			stack = append(stack, currentNumber)
+			stack = append(stack, currentString)
+			currentNumber = 0
+			currentString = ""
+		} else if char == ']' {
+			prevString := stack[len(stack)-1].(string)
+			stack = stack[:len(stack)-1]
+			repeatCount := stack[len(stack)-1].(int)
+			stack = stack[:len(stack)-1]
+
+			currentString = prevString + repeatString(repeatCount, currentString)
+		} else {
+			currentString += string(char)
+		}
+	}
+
+	return currentString
 }
