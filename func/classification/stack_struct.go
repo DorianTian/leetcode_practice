@@ -132,3 +132,48 @@ func DailyTemperatures(temperatures []int) []int {
 
 	return answer
 }
+
+func LargestRectangleArea(heights []int) int {
+	var stack []int
+	maxArea := 0
+
+	for i := 0; i < len(heights); i++ {
+		for len(stack) > 0 && heights[stack[len(stack)-1]] > heights[i] {
+			h := heights[stack[len(stack)-1]]
+			stack = stack[:len(stack)-1]
+
+			var width int
+			if len(stack) == 0 {
+				width = i
+			} else {
+				width = i - stack[len(stack)-1] - 1
+			}
+
+			area := h * width
+
+			if area > maxArea {
+				maxArea = area
+			}
+		}
+
+		stack = append(stack, i)
+	}
+
+	for len(stack) > 0 {
+		h := heights[stack[len(stack)-1]]
+		stack = stack[:len(stack)-1]
+		var width int
+		if len(stack) == 0 {
+			width = len(heights)
+		} else {
+			width = len(heights) - stack[len(stack)-1] - 1
+		}
+
+		area := h * width
+		if area > maxArea {
+			maxArea = area
+		}
+	}
+
+	return maxArea
+}
