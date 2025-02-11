@@ -48,9 +48,9 @@ func main() {
 	//nums := []string{"eat", "tea", "tan", "ate", "nat", "bat"}
 	//target := 9
 	//digits := "23"
-	candidates := []int{-1, 2, 0}
+	candidates := []int{1, 1, 1, 2, 2, 3}
 	//s := "()[]{}"
-	answer := classification.FindKthLargest(candidates, 4)
+	answer := classification.TopKFrequent(candidates, 2)
 
 	//for answer != nil {
 	//	fmt.Println(answer.Val)
