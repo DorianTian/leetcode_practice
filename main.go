@@ -48,9 +48,9 @@ func main() {
 	//nums := []string{"eat", "tea", "tan", "ate", "nat", "bat"}
 	//target := 9
 	//digits := "23"
-	candidates := []int{2, 3, 1, 1, 4}
+	candidates := []int{3, 2, 1, 0, 4}
 	//s := "()[]{}"
-	answer := classification.Jump2(candidates)
+	answer := classification.CanJump(candidates)
 
 	//for answer != nil {
 	//	fmt.Println(answer.Val)

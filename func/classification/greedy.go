@@ -38,3 +38,17 @@ func Jump2(nums []int) int {
 
 	return jumps
 }
+
+func CanJump(nums []int) bool {
+	farthest := 0
+
+	for i := 0; i < len(nums); i++ {
+		if i > farthest {
+			return false
+		}
+
+		farthest = max(farthest, nums[i]+i)
+	}
+
+	return farthest >= len(nums)-1
+}
