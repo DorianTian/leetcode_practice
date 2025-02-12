@@ -14,3 +14,27 @@ func MaxProfit(prices []int) int {
 
 	return maxProfit
 }
+
+func Jump2(nums []int) int {
+	if len(nums) <= 1 {
+		return 0
+	}
+	jumps := 0
+	farthest := 0
+	endOfCurrentJump := 0
+
+	for i := 0; i < len(nums); i++ {
+		farthest = max(farthest, nums[i]+i)
+
+		if i == endOfCurrentJump {
+			jumps++
+			endOfCurrentJump = farthest
+
+			if farthest >= len(nums)-1 {
+				return jumps
+			}
+		}
+	}
+
+	return jumps
+}

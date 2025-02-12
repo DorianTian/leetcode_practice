@@ -48,9 +48,9 @@ func main() {
 	//nums := []string{"eat", "tea", "tan", "ate", "nat", "bat"}
 	//target := 9
 	//digits := "23"
-	candidates := []int{1, 2}
+	candidates := []int{2, 3, 1, 1, 4}
 	//s := "()[]{}"
-	answer := classification.MaxProfit(candidates)
+	answer := classification.Jump2(candidates)
 
 	//for answer != nil {
 	//	fmt.Println(answer.Val)
