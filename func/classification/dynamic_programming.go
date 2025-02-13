@@ -27,3 +27,20 @@ func ClimbStairsWithSlidingWindow(n int) int {
 
 	return prev1
 }
+
+func Generate(numRows int) [][]int {
+	triangles := make([][]int, numRows)
+
+	for i := 0; i < numRows; i++ {
+		triangles[i] = make([]int, i+1)
+
+		triangles[i][0] = 1
+		triangles[i][i] = 1
+
+		for j := 1; j < i; j++ {
+			triangles[i][j] = triangles[i-1][j-1] + triangles[i-1][j]
+		}
+	}
+
+	return triangles
+}

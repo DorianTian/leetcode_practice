@@ -51,7 +51,7 @@ func main() {
 	//candidates := []int{3, 2, 1, 0, 4}
 	//s := "()[]{}"
 	//candidate := "abaccc"
-	answer := classification.ClimbStairsWithSlidingWindow(5)
+	answer := classification.Generate(5)
 
 	//for answer != nil {
 	//	fmt.Println(answer.Val)
