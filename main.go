@@ -48,10 +48,10 @@ func main() {
 	//nums := []string{"eat", "tea", "tan", "ate", "nat", "bat"}
 	//target := 9
 	//digits := "23"
-	candidates := []int{2, 7, 9, 3, 1}
+	//candidates := []int{2, 7, 9, 3, 1}
 	//s := "()[]{}"
 	//candidate := "abaccc"
-	answer := classification.Rob(candidates)
+	answer := classification.NumSquares(12)
 
 	//for answer != nil {
 	//	fmt.Println(answer.Val)
