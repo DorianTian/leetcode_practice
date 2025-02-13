@@ -50,8 +50,8 @@ func main() {
 	//digits := "23"
 	//candidates := []int{3, 2, 1, 0, 4}
 	//s := "()[]{}"
-	candidate := "abaccc"
-	answer := classification.PartitionLabels(candidate)
+	//candidate := "abaccc"
+	answer := classification.ClimbStairsWithSlidingWindow(5)
 
 	//for answer != nil {
 	//	fmt.Println(answer.Val)
