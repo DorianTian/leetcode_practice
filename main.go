@@ -48,9 +48,10 @@ func main() {
 	//nums := []string{"eat", "tea", "tan", "ate", "nat", "bat"}
 	//target := 9
 	//digits := "23"
-	candidates := []int{3, 2, 1, 0, 4}
+	//candidates := []int{3, 2, 1, 0, 4}
 	//s := "()[]{}"
-	answer := classification.CanJump(candidates)
+	candidate := "abaccc"
+	answer := classification.PartitionLabels(candidate)
 
 	//for answer != nil {
 	//	fmt.Println(answer.Val)
