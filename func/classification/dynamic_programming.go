@@ -1,5 +1,11 @@
 package classification
 
+type ByDesc []int
+
+func (a ByDesc) Less(i, j int) bool { return a[i] > a[j] }
+func (a ByDesc) Len() int           { return len(a) }
+func (a ByDesc) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
+
 func ClimbStairsWithDP(n int) int {
 	dp := make([]int, n+1)
 	dp[0] = 1
@@ -78,4 +84,23 @@ func NumSquares(n int) int {
 	}
 
 	return dp[n]
+}
+
+func CoinChange(coins []int, amount int) int {
+	dp := make([]int, amount+1)
+
+	for i := 1; i <= amount; i++ {
+		dp[i] = amount + 1
+	}
+
+	for _, coin := range coins {
+		for i := coin; i <= amount; i++ {
+			dp[i] = min(dp[i], dp[i-coin]+1)
+		}
+	}
+
+	if dp[amount] == amount+1 {
+		return -1
+	}
+	return dp[amount]
 }
