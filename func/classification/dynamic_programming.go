@@ -192,3 +192,35 @@ func CanPartition(nums []int) bool {
 
 	return dp[target]
 }
+
+func LongestValidParentheses(s string) int {
+	n := len(s)
+	if n == 0 {
+		return 0
+	}
+
+	dp := make([]int, n) // dp[i] 表示以 s[i] 结尾的最长有效括号子串长度
+	maxLength := 0
+
+	// 遍历字符串
+	for i := 1; i < n; i++ {
+		if s[i] == ')' {
+			if s[i-1] == '(' {
+				// 情况 1: 当前字符和前一个字符形成有效括号对
+				dp[i] = 2
+				if i-2 >= 0 {
+					dp[i] += dp[i-2] // 加上之前有效括号子串的长度
+				}
+			} else if i-dp[i-1]-1 >= 0 && s[i-dp[i-1]-1] == '(' {
+				// 情况 2: 当前字符和前面的有效括号子串形成新的有效括号对子
+				dp[i] = dp[i-1] + 2
+				if i-dp[i-1]-2 >= 0 {
+					dp[i] += dp[i-dp[i-1]-2] // 加上之前有效括号子串的长度
+				}
+			}
+		}
+		maxLength = max(maxLength, dp[i]) // 更新最大有效括号子串长度
+	}
+
+	return maxLength
+}
