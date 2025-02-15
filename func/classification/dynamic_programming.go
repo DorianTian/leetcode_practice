@@ -150,3 +150,21 @@ func LengthOfLIS(nums []int) int {
 
 	return maxLen
 }
+
+func MaxProduct(nums []int) int {
+	minProd := nums[0]
+	maxProd := nums[0]
+	result := nums[0]
+
+	for i := 1; i < len(nums); i++ {
+		if nums[i] < 0 {
+			maxProd, minProd = minProd, maxProd
+		}
+
+		maxProd = max(nums[i], nums[i]*maxProd)
+		minProd = min(nums[i], nums[i]*minProd)
+		result = max(result, maxProd)
+	}
+
+	return result
+}
