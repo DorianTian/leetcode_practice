@@ -49,3 +49,40 @@ func MinPathSum(grid [][]int) int {
 
 	return dp[len(grid)-1][len(grid[0])-1]
 }
+
+func LongestPalindrome(s string) string {
+	if len(s) <= 1 {
+		return s
+	}
+
+	dp := make([][]bool, len(s))
+	for i := range dp {
+		dp[i] = make([]bool, len(s))
+	}
+
+	for i := 0; i < len(s); i++ {
+		dp[i][i] = false
+	}
+
+	longestPalin := s[0:1]
+
+	for length := 1; length <= len(s); length++ {
+		for i := 0; i <= len(s)-length; i++ {
+			j := i + length - 1
+
+			if s[i] == s[j] {
+				if length <= 2 {
+					dp[i][j] = true
+				} else {
+					dp[i][j] = dp[i+1][j-1]
+				}
+			}
+
+			if dp[i][j] && length > len(longestPalin) {
+				longestPalin = s[i : j+1]
+			}
+		}
+	}
+
+	return longestPalin
+}
