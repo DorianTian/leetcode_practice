@@ -50,8 +50,8 @@ func main() {
 	//digits := "23"
 	//candidates := []int{2, 7, 9, 3, 1}
 	//s := "()[]{}"
-	candidate := "bb"
-	answer := classification.LongestPalindrome(candidate)
+	//candidate := "bb"
+	answer := classification.SingleNumber()
 
 	//for answer != nil {
 	//	fmt.Println(answer.Val)

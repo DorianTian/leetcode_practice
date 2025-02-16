@@ -1,9 +1,11 @@
 package classification
 
-func SingleNumber() int {
-	a := 5
-	b := 3
-	a ^= b
+func SingleNumber(nums []int) int {
+	result := 0
 
-	return a
+	for _, num := range nums {
+		result ^= num
+	}
+
+	return result
 }
