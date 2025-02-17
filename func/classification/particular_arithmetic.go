@@ -77,3 +77,45 @@ func NextPermutation(nums []int) {
 
 	reverse(nums, i+1, n-1)
 }
+
+func FindDuplicate(nums []int) int {
+	//low, high := 1, len(nums)-1
+	//
+	//for low < high {
+	//	mid := low + (high-low)/2
+	//	count := 0
+	//
+	//	for _, num := range nums {
+	//		if num >= low && num <= mid {
+	//			count++
+	//		}
+	//	}
+	//
+	//	if count > mid-low+1 {
+	//		high = mid
+	//	} else {
+	//		low = mid + 1
+	//	}
+	//}
+	//
+	//return low
+	slow := nums[0]
+	fast := nums[0]
+
+	for {
+		slow = nums[slow]
+		fast = nums[nums[fast]]
+
+		if slow == fast {
+			break
+		}
+	}
+
+	slow = nums[0]
+	for fast != slow {
+		slow = nums[slow]
+		fast = nums[fast]
+	}
+
+	return slow
+}
