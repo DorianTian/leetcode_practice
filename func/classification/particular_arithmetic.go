@@ -48,3 +48,32 @@ func SortColors(nums []int) {
 		}
 	}
 }
+
+func NextPermutation(nums []int) {
+	n := len(nums)
+
+	var reverse func(arr []int, start, end int)
+	reverse = func(arr []int, start int, end int) {
+		for start < end {
+			arr[start], arr[end] = arr[end], arr[start]
+			start++
+			end--
+		}
+	}
+
+	i := n - 2
+	for i >= 0 && nums[i] >= nums[i+1] {
+		i--
+	}
+
+	if i >= 0 {
+		j := n - 1
+		for nums[j] <= nums[i] {
+			j--
+		}
+
+		nums[i], nums[j] = nums[j], nums[i]
+	}
+
+	reverse(nums, i+1, n-1)
+}
