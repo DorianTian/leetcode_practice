@@ -158,3 +158,20 @@ func RemoveDuplicates2(nums []int) int {
 
 	return k
 }
+
+func Rotate(nums []int, k int) {
+	traverse := func(nums []int) {
+		left, right := 0, len(nums)-1
+
+		for left < right {
+			nums[left], nums[right] = nums[right], nums[left]
+			left++
+			right--
+		}
+	}
+
+	// [1,2,3,4,5,6,7]
+	traverse(nums)
+	traverse(nums[:k])
+	traverse(nums[k:])
+}
