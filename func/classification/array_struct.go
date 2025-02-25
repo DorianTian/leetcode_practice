@@ -117,3 +117,44 @@ func MergeSortedArray(nums1 []int, m int, nums2 []int, n int) {
 		p--
 	}
 }
+
+func RemoveElement(nums []int, val int) int {
+	k := 0
+	for i := 0; i < len(nums); i++ {
+		if nums[i] != val {
+			nums[k] = nums[i]
+			k++
+		}
+	}
+
+	return k
+}
+
+func RemoveDuplicates(nums []int) int {
+	k := 1
+	for i := k; i < len(nums); i++ {
+		if nums[i] != nums[k-1] {
+			nums[k] = nums[i]
+			k++
+		}
+	}
+
+	return k
+}
+
+func RemoveDuplicates2(nums []int) int {
+	if len(nums) < 2 {
+		return len(nums)
+	}
+
+	k := 2
+
+	for i := k; i < len(nums); i++ {
+		if nums[i] != nums[k-2] {
+			nums[k] = nums[i]
+			k++
+		}
+	}
+
+	return k
+}
