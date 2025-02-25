@@ -201,3 +201,17 @@ func MaxProfit2(prices []int) int {
 
 	return maxProfit
 }
+
+func CanJump(nums []int) bool {
+	farthest := 0
+
+	for i := 0; i < len(nums); i++ {
+		if i > farthest {
+			return false
+		}
+
+		farthest = max(farthest, i+nums[i])
+	}
+
+	return farthest >= len(nums)-1
+}
