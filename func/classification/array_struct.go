@@ -175,3 +175,18 @@ func Rotate(nums []int, k int) {
 	traverse(nums[:k])
 	traverse(nums[k:])
 }
+
+func MaxProfit(prices []int) int {
+	maxProfit := 0
+	minPrice := prices[0]
+
+	for i := 0; i < len(prices); i++ {
+		if prices[i] < minPrice {
+			minPrice = prices[i]
+		} else {
+			maxProfit = max(maxProfit, prices[i]-minPrice)
+		}
+	}
+
+	return maxProfit
+}
