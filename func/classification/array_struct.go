@@ -215,3 +215,28 @@ func CanJump(nums []int) bool {
 
 	return farthest >= len(nums)-1
 }
+
+func Jump(nums []int) int {
+	if len(nums) <= 1 {
+		return 0
+	}
+
+	farthest := 0
+	jumps := 0
+	endJumpPoint := 0
+
+	for i := 0; i < len(nums); i++ {
+		farthest = max(farthest, i+nums[i])
+
+		if i == endJumpPoint {
+			jumps++
+			endJumpPoint = farthest
+
+			if farthest >= len(nums)-1 {
+				return jumps
+			}
+		}
+	}
+
+	return jumps
+}
