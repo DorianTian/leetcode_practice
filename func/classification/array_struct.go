@@ -240,3 +240,27 @@ func Jump(nums []int) int {
 
 	return jumps
 }
+
+func HIndex(citations []int) int {
+	counts := make([]int, len(citations)+1)
+
+	for i := 0; i < len(citations); i++ {
+		if citations[i] >= len(citations) {
+			counts[len(citations)]++
+			continue
+		}
+
+		counts[citations[i]]++
+	}
+
+	total := 0
+	for i := len(counts) - 1; i >= 0; i-- {
+		total += counts[i]
+
+		if total >= i {
+			return i
+		}
+	}
+
+	return -1
+}
