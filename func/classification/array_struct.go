@@ -264,3 +264,21 @@ func HIndex(citations []int) int {
 
 	return -1
 }
+
+func productExceptSelf(nums []int) []int {
+	prefix := 1
+	suffix := 1
+	var product []int
+
+	for _, num := range nums {
+		product = append(product, prefix)
+		prefix *= num
+	}
+
+	for i := len(product) - 1; i >= 0; i-- {
+		product[i] = product[i] * suffix
+		suffix *= nums[i]
+	}
+
+	return product
+}
