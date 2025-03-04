@@ -282,3 +282,25 @@ func productExceptSelf(nums []int) []int {
 
 	return product
 }
+
+func CanCompleteCircuit(gas []int, cost []int) int {
+	totalTank := 0
+	currentTank := 0
+	startIndex := 0
+
+	for i := 0; i < len(gas); i++ {
+		totalTank += gas[i] - cost[i]
+		currentTank += gas[i] - cost[i]
+
+		if currentTank < 0 {
+			startIndex = i + 1
+			currentTank = 0
+		}
+	}
+
+	if totalTank >= 0 {
+		return startIndex
+	}
+
+	return -1
+}
