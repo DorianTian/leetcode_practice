@@ -304,3 +304,32 @@ func CanCompleteCircuit(gas []int, cost []int) int {
 
 	return -1
 }
+
+func Candy(ratings []int) int {
+	if len(ratings) == 0 {
+		return 0
+	}
+
+	totalCandies := 0
+	allocations := make([]int, len(ratings))
+	for i := 0; i < len(allocations); i++ {
+		allocations[i] = 1
+	}
+
+	for i := 1; i < len(allocations); i++ {
+		if ratings[i] > ratings[i-1] {
+			allocations[i] = allocations[i-1] + 1
+		}
+	}
+
+	for i := len(allocations) - 2; i >= 0; i-- {
+		if ratings[i] > ratings[i+1] {
+			allocations[i] = max(allocations[i], allocations[i+1]+1)
+		}
+	}
+
+	for _, num := range allocations {
+		totalCandies += num
+	}
+	return totalCandies
+}
