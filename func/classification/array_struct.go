@@ -360,3 +360,28 @@ func Trap(height []int) int {
 
 	return trapRains
 }
+
+func RomanToInt(s string) int {
+	symbolsToValueMap := map[byte]int{
+		'I': 1,
+		'V': 5,
+		'X': 10,
+		'L': 50,
+		'C': 100,
+		'D': 500,
+		'M': 1000,
+	}
+
+	n := len(s)
+	counts := 0
+
+	for i := 0; i < n; i++ {
+		if i < n-1 && symbolsToValueMap[s[i]] < symbolsToValueMap[s[i+1]] {
+			counts -= symbolsToValueMap[s[i]]
+		} else {
+			counts += symbolsToValueMap[s[i]]
+		}
+	}
+
+	return counts
+}
