@@ -333,3 +333,30 @@ func Candy(ratings []int) int {
 	}
 	return totalCandies
 }
+
+func Trap(height []int) int {
+	left, right := 0, len(height)-1
+	leftMax, rightMax := 0, 0
+	trapRains := 0
+
+	for left < right {
+		if height[left] < height[right] {
+			if height[left] > leftMax {
+				leftMax = height[left]
+			} else {
+				trapRains += leftMax - height[left]
+			}
+
+			left++
+		} else {
+			if height[right] > rightMax {
+				rightMax = height[right]
+			} else {
+				trapRains += rightMax - height[right]
+			}
+			right--
+		}
+	}
+
+	return trapRains
+}
