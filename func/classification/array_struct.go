@@ -385,3 +385,19 @@ func RomanToInt(s string) int {
 
 	return counts
 }
+
+func LengthOfLastWord(s string) int {
+	resultLength := 0
+	i := len(s) - 1
+
+	for i >= 0 && s[i] == ' ' {
+		i--
+	}
+
+	for i >= 0 && s[i] != ' ' {
+		resultLength++
+		i--
+	}
+
+	return resultLength
+}
