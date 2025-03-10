@@ -401,3 +401,23 @@ func LengthOfLastWord(s string) int {
 
 	return resultLength
 }
+
+func LongestCommonPrefix(strs []string) string {
+	lcp := strs[0]
+
+	for i := 0; i < len(strs); i++ {
+		k := 0
+
+		for k < len(lcp) && k < len(strs[i]) && lcp[k] == strs[i][k] {
+			k++
+		}
+
+		lcp = strs[i][:k]
+
+		if len(lcp) == 0 {
+			return lcp
+		}
+	}
+
+	return lcp
+}
