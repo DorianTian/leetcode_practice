@@ -424,3 +424,28 @@ func ReverseWords(s string) string {
 
 	return strings.Join(words, " ")
 }
+
+func Convert(s string, numRows int) string {
+	if numRows == 1 || numRows > len(s) {
+		return s
+	}
+
+	rows := make([]string, numRows)
+	currentRow := 0
+	goDownFlag := false
+
+	for i := 0; i < len(s); i++ {
+		rows[currentRow] += string(s[i])
+		if currentRow == 0 || currentRow == numRows-1 {
+			goDownFlag = !goDownFlag
+		}
+
+		if goDownFlag {
+			currentRow++
+		} else {
+			currentRow--
+		}
+	}
+
+	return strings.Join(rows, "")
+}
