@@ -1,6 +1,9 @@
 package classification
 
-import "sort"
+import (
+	"sort"
+	"strings"
+)
 
 func MaxSubArray(nums []int) int {
 	maxSum := nums[0]
@@ -400,4 +403,24 @@ func LengthOfLastWord(s string) int {
 	}
 
 	return resultLength
+}
+
+func ReverseWords(s string) string {
+	var words []string
+	currentWord := ""
+
+	for i := len(s) - 1; i >= 0; i-- {
+		if s[i] != ' ' {
+			currentWord = string(s[i]) + currentWord
+		} else if len(currentWord) > 0 {
+			words = append(words, currentWord)
+			currentWord = ""
+		}
+	}
+
+	if len(currentWord) > 0 {
+		words = append(words, currentWord)
+	}
+
+	return strings.Join(words, " ")
 }
