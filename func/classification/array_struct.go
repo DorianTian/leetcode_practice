@@ -449,3 +449,22 @@ func Convert(s string, numRows int) string {
 
 	return strings.Join(rows, "")
 }
+
+func StrStr(haystack string, needle string) int {
+	if needle == "" {
+		return 0
+	}
+
+	if len(needle) > len(haystack) {
+		return -1
+	}
+
+	for i := 0; i <= len(haystack)-len(needle); i++ {
+		subString := haystack[i : i+len(needle)]
+		if subString == needle {
+			return i
+		}
+	}
+
+	return -1
+}
