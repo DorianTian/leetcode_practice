@@ -3,6 +3,7 @@ package classification
 import (
 	"sort"
 	"strings"
+	"unicode"
 )
 
 func MaxSubArray(nums []int) int {
@@ -467,4 +468,24 @@ func StrStr(haystack string, needle string) int {
 	}
 
 	return -1
+}
+
+func IsPalindrome(s string) bool {
+	normalized := []rune{}
+
+	for _, r := range s {
+		if unicode.IsLetter(r) || unicode.IsNumber(r) {
+			normalized = append(normalized, r)
+		}
+	}
+
+	n := len(normalized)
+
+	for i := 0; i < n/2; i++ {
+		if normalized[i] != normalized[n-i-1] {
+			return false
+		}
+	}
+
+	return true
 }
