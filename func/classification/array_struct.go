@@ -523,3 +523,24 @@ func TwoSum(numbers []int, target int) []int {
 
 	return []int{}
 }
+
+func MaxArea(height []int) int {
+	left, right := 0, len(height)-1
+	maxArea := 0
+
+	for left < right {
+		currentContainer := (right - left) * min(height[left], height[right])
+
+		if currentContainer > maxArea {
+			maxArea = currentContainer
+		}
+
+		if height[left] < height[right] {
+			left++
+		} else {
+			right--
+		}
+	}
+
+	return maxArea
+}
