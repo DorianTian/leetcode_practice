@@ -504,3 +504,22 @@ func IsSubsequence(s string, t string) bool {
 
 	return i == len(s)
 }
+
+func TwoSum(numbers []int, target int) []int {
+	left := 0
+	right := len(numbers) - 1
+
+	for left < right {
+		currentSum := numbers[left] + numbers[right]
+
+		if currentSum == target {
+			return []int{left + 1, right + 1}
+		} else if currentSum > target {
+			right--
+		} else {
+			left++
+		}
+	}
+
+	return []int{}
+}
