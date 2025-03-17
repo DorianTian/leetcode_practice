@@ -1,6 +1,7 @@
 package classification
 
 import (
+	"math"
 	"sort"
 	"strings"
 	"unicode"
@@ -582,4 +583,26 @@ func threeSum(nums []int) [][]int {
 	}
 
 	return results
+}
+
+func MinSubArrayLen(target int, nums []int) int {
+	minLen := math.MaxInt32
+	sum := 0
+	start := 0
+
+	for end := 0; end < len(nums); end++ {
+		sum += nums[end]
+
+		for sum >= target {
+			minLen = min(minLen, end-start+1)
+			sum -= nums[start]
+			start++
+		}
+	}
+
+	if minLen == math.MaxInt32 {
+		return 0
+	}
+
+	return minLen
 }
