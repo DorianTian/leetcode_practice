@@ -544,3 +544,42 @@ func MaxArea(height []int) int {
 
 	return maxArea
 }
+
+func threeSum(nums []int) [][]int {
+	var results [][]int
+
+	sort.Ints(nums)
+
+	for i, num := range nums {
+		if i > 0 && num == nums[i-1] {
+			continue
+		}
+
+		left, right := i+1, len(nums)-1
+
+		for left < right {
+			currentSum := nums[left] + nums[right] + num
+
+			if currentSum == 0 {
+				results = append(results, []int{num, nums[left], nums[right]})
+
+				for left < right && nums[left] == nums[left+1] {
+					left++
+				}
+
+				for left < right && nums[right] == nums[right-1] {
+					right--
+				}
+
+				left++
+				right--
+			} else if currentSum > 0 {
+				right--
+			} else {
+				left++
+			}
+		}
+	}
+
+	return results
+}
