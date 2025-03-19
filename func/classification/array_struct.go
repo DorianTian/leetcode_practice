@@ -606,3 +606,20 @@ func MinSubArrayLen(target int, nums []int) int {
 
 	return minLen
 }
+
+func lengthOfLongestSubstring(s string) int {
+	maxLen := 0
+	start := 0
+	hashChar := make(map[byte]int)
+
+	for end := 0; end < len(s); end++ {
+		if prevIndex, exists := hashChar[s[end]]; exists && prevIndex >= start {
+			start = prevIndex + 1
+		}
+
+		hashChar[s[end]] = end
+		maxLen = max(maxLen, end-start+1)
+	}
+
+	return maxLen
+}
