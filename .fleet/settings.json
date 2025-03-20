@@ -1,0 +1,4 @@
+{
+    "prettier.mode": "Auto",
+    "prettier.applicableFilesGlob": "{**/*,*}.{js,ts,jsx,tsx,json}"
+}

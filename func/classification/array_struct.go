@@ -623,3 +623,80 @@ func lengthOfLongestSubstring(s string) int {
 
 	return maxLen
 }
+
+func IsValidSudoku(board [][]byte) bool {
+	rows := make([][]bool, 9)
+	cols := make([][]bool, 9)
+	boxes := make([][]bool, 9)
+	for i := 0; i < 9; i++ {
+		rows[i] = make([]bool, 9)
+		cols[i] = make([]bool, 9)
+		boxes[i] = make([]bool, 9)
+	}
+
+	for i := 0; i < 9; i++ {
+		for j := 0; j < 9; j++ {
+			num := board[i][j]
+			if num == '.' {
+				continue
+			}
+
+			n := int(num - '1')
+			boxIndex := (i/3)*3 + (j / 3)
+
+			if rows[i][n] || cols[j][n] || boxes[boxIndex][n] {
+				return false
+			}
+
+			rows[i][n] = true
+			cols[j][n] = true
+			boxes[boxIndex][n] = true
+		}
+	}
+
+	return true
+}
+
+func SpiralOrder(matrix [][]int) []int {
+	if len(matrix) == 0 || len(matrix[0]) == 0 {
+		return []int{}
+	}
+
+	result := make([]int, 0)
+	top := 0
+	bottom := len(matrix) - 1
+	left := 0
+	right := len(matrix[0]) - 1
+
+	for top <= bottom && left <= right {
+		// top
+		for col := left; col <= right; col++ {
+			result = append(result, matrix[top][col])
+		}
+		top++
+
+		// right
+		for row := top; row <= bottom; row++ {
+			result = append(result, matrix[row][right])
+		}
+		right--
+
+		// bottom
+		if top <= bottom {
+			for col := right; col >= left; col-- {
+				result = append(result, matrix[bottom][col])
+			}
+			bottom--
+		}
+
+		// left
+		if left <= right {
+			for row := bottom; row >= top; row-- {
+				result = append(result, matrix[row][left])
+			}
+			left++
+		}
+	}
+
+	return result
+}
