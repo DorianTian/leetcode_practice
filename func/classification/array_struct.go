@@ -812,3 +812,21 @@ func GameOfLife(board [][]int) {
 		}
 	}
 }
+
+func CanConstruct(ransomNote string, magazine string) bool {
+	charMap := make(map[rune]int)
+
+	for _, char := range magazine {
+		charMap[char]++
+	}
+
+	for _, char := range ransomNote {
+		if charMap[char] <= 0 {
+			return false
+		}
+
+		charMap[char]--
+	}
+
+	return true
+}
