@@ -767,3 +767,48 @@ func setZeroes(matrix [][]int) {
 		}
 	}
 }
+
+func GameOfLife(board [][]int) {
+	m, n := len(board), len(board[0])
+
+	dirs := [8][2]int{
+		{-1, -1}, {-1, 0}, {-1, 1},
+		{0, -1}, {0, 1},
+		{1, -1}, {1, 0}, {1, 1},
+	}
+
+	for i := 0; i < m; i++ {
+		for j := 0; j < n; j++ {
+			liveNeighbors := 0
+			for _, dir := range dirs {
+				x, y := i+dir[0], j+dir[1]
+
+				if x >= 0 && y >= 0 && x < m && y < n {
+					if board[x][y] == 1 || board[x][y] == 2 {
+						liveNeighbors++
+					}
+				}
+			}
+
+			if board[i][j] == 1 {
+				if liveNeighbors < 2 || liveNeighbors > 3 {
+					board[i][j] = 2
+				}
+			} else {
+				if liveNeighbors == 3 {
+					board[i][j] = 3
+				}
+			}
+		}
+	}
+
+	for i := 0; i < m; i++ {
+		for j := 0; j < n; j++ {
+			if board[i][j] == 2 {
+				board[i][j] = 0
+			} else if board[i][j] == 3 {
+				board[i][j] = 1
+			}
+		}
+	}
+}
