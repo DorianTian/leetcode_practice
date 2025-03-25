@@ -830,3 +830,33 @@ func CanConstruct(ransomNote string, magazine string) bool {
 
 	return true
 }
+
+func IsIsomorphic(s string, t string) bool {
+	if len(s) != len(t) {
+		return false
+	}
+	mapST := make(map[byte]byte)
+	mapTS := make(map[byte]byte)
+
+	for i := 0; i < len(s); i++ {
+		cs, ct := s[i], t[i]
+
+		if v, ok := mapST[cs]; ok {
+			if v != ct {
+				return false
+			}
+		} else {
+			mapST[cs] = ct
+		}
+
+		if v, ok := mapTS[ct]; ok {
+			if v != cs {
+				return false
+			}
+		} else {
+			mapTS[ct] = cs
+		}
+	}
+
+	return true
+}
