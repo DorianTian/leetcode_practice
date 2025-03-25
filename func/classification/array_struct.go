@@ -860,3 +860,37 @@ func IsIsomorphic(s string, t string) bool {
 
 	return true
 }
+
+func WordPattern(pattern string, s string) bool {
+	words := strings.Split(s, " ")
+
+	if len(words) != len(pattern) {
+		return false
+	}
+
+	charToWord := make(map[byte]string)
+	wordToChar := make(map[string]byte)
+
+	for i := 0; i < len(pattern); i++ {
+		c := pattern[i]
+		w := words[i]
+
+		if mappedWord, ok := charToWord[c]; ok {
+			if mappedWord != w {
+				return false
+			}
+		} else {
+			charToWord[c] = w
+		}
+
+		if mappedChar, ok := wordToChar[w]; ok {
+			if mappedChar != c {
+				return false
+			}
+		} else {
+			wordToChar[w] = c
+		}
+	}
+
+	return true
+}
