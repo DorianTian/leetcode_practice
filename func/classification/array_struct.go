@@ -1,6 +1,7 @@
 package classification
 
 import (
+	"fmt"
 	"math"
 	"sort"
 	"strings"
@@ -915,4 +916,35 @@ func IsAnagram(s string, t string) bool {
 	}
 
 	return true
+}
+
+func getFrequencyKey(s string) string {
+	count := make([]int, 26)
+
+	for _, char := range s {
+		count[char-'a']++
+	}
+
+	var keyBuilder strings.Builder
+	for _, freq := range count {
+		keyBuilder.WriteString(fmt.Sprintf("#%d", freq))
+	}
+
+	return keyBuilder.String()
+}
+
+func groupAnagrams(strs []string) [][]string {
+	anagrams := make(map[string][]string)
+
+	for _, str := range strs {
+		key := getFrequencyKey(str)
+		anagrams[key] = append(anagrams[key], str)
+	}
+
+	result := make([][]string, 0)
+	for _, group := range anagrams {
+		result = append(result, group)
+	}
+
+	return result
 }
