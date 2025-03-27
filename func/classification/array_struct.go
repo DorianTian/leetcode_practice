@@ -948,3 +948,19 @@ func groupAnagrams(strs []string) [][]string {
 
 	return result
 }
+
+func TwoSum(nums []int, target int) []int {
+	countMap := make(map[int]int)
+
+	for i, num := range nums {
+		currentCount := target - num
+
+		if value, ok := countMap[currentCount]; ok {
+			return []int{i, value}
+		}
+
+		countMap[num] = i
+	}
+
+	return []int{}
+}
