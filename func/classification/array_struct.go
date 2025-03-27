@@ -964,3 +964,30 @@ func TwoSum(nums []int, target int) []int {
 
 	return []int{}
 }
+
+func getNext(n int) int {
+	sum := 0
+
+	for n > 0 {
+		digit := n % 10
+		sum += digit * digit
+		n /= 10
+	}
+
+	return sum
+}
+
+func IsHappy(n int) bool {
+	existMap := make(map[int]int)
+
+	for n != 1 {
+		if _, exist := existMap[n]; exist {
+			return false
+		}
+
+		existMap[n] = n
+		n = getNext(n)
+	}
+
+	return true
+}
