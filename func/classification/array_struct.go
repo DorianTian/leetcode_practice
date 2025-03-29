@@ -991,3 +991,50 @@ func IsHappy(n int) bool {
 
 	return true
 }
+
+func containsNearbyDuplicate(nums []int, k int) bool {
+	numMap := make(map[int]int)
+
+	for i, num := range nums {
+		if index, ok := numMap[num]; ok {
+			if i-index <= k {
+				return true
+			}
+		}
+
+		numMap[num] = i
+	}
+
+	return false
+}
+
+func longestConsecutive(nums []int) int {
+	iteratorMap := make(map[int]int)
+	longestStreak := 0
+
+	for _, num := range nums {
+		iteratorMap[num] = num
+	}
+
+	for num := range iteratorMap {
+		if _, ok := iteratorMap[num-1]; !ok {
+			currentNum := num
+			currentStreak := 1
+
+			for {
+				if _, ok := iteratorMap[currentNum+1]; !ok {
+					break
+				}
+
+				currentNum++
+				currentStreak++
+			}
+
+			if currentStreak > longestStreak {
+				longestStreak = currentStreak
+			}
+		}
+	}
+
+	return longestStreak
+}
