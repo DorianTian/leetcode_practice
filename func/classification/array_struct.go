@@ -1064,3 +1064,28 @@ func summaryRanges(nums []int) []string {
 
 	return result
 }
+
+func Merge(intervals [][]int) [][]int {
+	if len(intervals) <= 1 {
+		return intervals
+	}
+
+	sort.Slice(intervals, func(i, j int) bool {
+		return intervals[i][0] < intervals[j][0]
+	})
+
+	var merged [][]int
+	currentInterval := intervals[0]
+
+	for i := 1; i < len(intervals); i++ {
+		if intervals[i][0] <= currentInterval[1] {
+			currentInterval[1] = max(currentInterval[1], intervals[i][1])
+		} else {
+			merged = append(merged, currentInterval)
+			currentInterval = intervals[i]
+		}
+	}
+
+	merged = append(merged, currentInterval)
+	return merged
+}
