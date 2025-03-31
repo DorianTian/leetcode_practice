@@ -1089,3 +1089,24 @@ func Merge(intervals [][]int) [][]int {
 	merged = append(merged, currentInterval)
 	return merged
 }
+
+func insert(intervals [][]int, newInterval []int) [][]int {
+	result := [][]int{}
+
+	for i := 0; i < len(intervals); i++ {
+		if intervals[i][1] < newInterval[0] {
+			result = append(result, intervals[i])
+		} else if intervals[i][0] <= newInterval[1] {
+			newInterval[0] = min(intervals[i][0], newInterval[0])
+			newInterval[1] = max(intervals[i][1], newInterval[1])
+
+			result = append(result, newInterval)
+		} else {
+			result = append(result, intervals[i])
+		}
+
+	}
+
+	result = append(result, newInterval)
+	return result
+}
