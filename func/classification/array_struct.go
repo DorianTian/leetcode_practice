@@ -1154,3 +1154,22 @@ func IsValid(s string) bool {
 
 	return len(stack) == 0
 }
+
+func simplifyPath(path string) string {
+	stack := []string{}
+	components := strings.Split(path, "/")
+
+	for _, component := range components {
+		if component == "." || component == "" {
+			continue
+		} else if component == ".." {
+			if len(stack) > 0 {
+				stack = stack[:len(stack)-1]
+			}
+		} else {
+			stack = append(stack, component)
+		}
+	}
+
+	return "/" + strings.Join(stack, "/")
+}
