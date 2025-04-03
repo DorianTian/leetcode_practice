@@ -316,3 +316,22 @@ func MergeKLists(lists []*utils.ListNode) *utils.ListNode {
 
 	return dummyHead.Next
 }
+
+func hasCycle(head *utils.ListNode) bool {
+	if head == nil || head.Next == nil {
+		return false
+	}
+
+	slow, fast := head, head.Next
+
+	for fast != nil && fast.Next != nil {
+		slow = slow.Next
+		fast = fast.Next.Next
+
+		if slow == fast {
+			return true
+		}
+	}
+
+	return false
+}
