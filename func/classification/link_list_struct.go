@@ -429,3 +429,28 @@ func copyRandomList(head *utils.Node) *utils.Node {
 
 	return newHead
 }
+
+func reverseBetween(head *utils.ListNode, left int, right int) *utils.ListNode {
+	dummyHead := &utils.ListNode{}
+	dummyHead.Next = head
+	prev := dummyHead
+
+	for i := 0; i < left-1; i++ {
+		prev = prev.Next
+	}
+
+	current := prev.Next
+	var reversePrev *utils.ListNode
+
+	for i := 0; i < right-left; i++ {
+		next := current.Next
+		current.Next = reversePrev
+		reversePrev = current
+		current = next
+	}
+
+	prev.Next.Next = current
+	prev.Next = reversePrev
+
+	return dummyHead.Next
+}
