@@ -79,3 +79,27 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
 
 	return dummyHead.Next
 }
+
+func deleteDuplicates(head *ListNode) *ListNode {
+	dummyHead := &ListNode{}
+	dummyHead.Next = head
+
+	cur := head
+	pre := dummyHead
+
+	for cur != nil {
+		if cur.Next != nil && cur.Val == cur.Next.Val {
+			for cur.Next != nil && cur.Val == cur.Next.Val {
+				cur = cur.Next
+			}
+
+			pre.Next = cur.Next
+		} else {
+			pre = cur
+		}
+
+		cur = cur.Next
+	}
+
+	return dummyHead.Next
+}
