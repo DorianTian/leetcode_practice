@@ -59,3 +59,23 @@ func CreateSingleLinkList(array []int) *ListNode {
 
 	return dummyHead
 }
+
+func removeNthFromEnd(head *ListNode, n int) *ListNode {
+	dummyHead := &ListNode{}
+	dummyHead.Next = head
+
+	fast, slow := dummyHead, dummyHead
+
+	for i := 0; i <= n; i++ {
+		fast = fast.Next
+	}
+
+	for fast != nil {
+		fast = fast.Next
+		slow = slow.Next
+	}
+
+	slow.Next = slow.Next.Next
+
+	return dummyHead.Next
+}
