@@ -103,3 +103,30 @@ func deleteDuplicates(head *ListNode) *ListNode {
 
 	return dummyHead.Next
 }
+
+func rotateRight(head *ListNode, k int) *ListNode {
+	if head == nil || k == 0 {
+		return head
+	}
+
+	length := 1
+	tail := head
+
+	for tail.Next != nil {
+		tail = tail.Next
+		length++
+	}
+
+	tail.Next = head
+	steps := length - k%length
+
+	for steps > 0 {
+		tail = tail.Next
+		steps--
+	}
+
+	head = tail.Next
+	tail.Next = nil
+
+	return head
+}
