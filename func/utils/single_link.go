@@ -130,3 +130,27 @@ func rotateRight(head *ListNode, k int) *ListNode {
 
 	return head
 }
+
+func partition(head *ListNode, x int) *ListNode {
+	var lessHead *ListNode = &ListNode{}
+	var greaterHead *ListNode = &ListNode{}
+
+	less := lessHead
+	greater := greaterHead
+
+	for head != nil {
+		if head.Val < x {
+			less.Next = head
+			less = less.Next
+		} else {
+			greater.Next = head
+			greater = greater.Next
+		}
+
+		head = head.Next
+	}
+
+	less.Next = greaterHead.Next
+
+	return lessHead.Next
+}
