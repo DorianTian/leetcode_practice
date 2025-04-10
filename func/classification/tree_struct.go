@@ -453,3 +453,33 @@ func isSymmetric(root *utils.TreeNode) bool {
 
 	return true
 }
+
+// 输入: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
+// 输出: [3,9,20,null,null,15,7]
+
+func buildTree(preorder []int, inorder []int) *utils.TreeNode {
+	inorderMap := make(map[int]int)
+
+	for idx, value := range inorder {
+		inorderMap[value] = idx
+	}
+
+	var build func(inorderStart int, inorderEnd int, preorderStart int, preorderEnd int) *utils.TreeNode
+	build = func(inorderStart int, inorderEnd int, preorderStart int, preorderEnd int) *utils.TreeNode {
+		if inorderStart > inorderEnd || preorderStart > preorderEnd {
+			return nil
+		}
+
+		rootValue := preorder[preorderStart]
+		root := &utils.TreeNode{Val: rootValue}
+		rootIndex := inorderMap[rootValue]
+		leftLen := rootIndex - inorderStart
+
+		root.Left = build(inorderStart, rootIndex-1, preorderStart+1, preorderStart+leftLen)
+		root.Right = build(rootIndex+1, inorderEnd, preorderStart+leftLen+1, preorderEnd)
+
+		return root
+	}
+
+	return build(0, len(inorder)-1, 0, len(preorder)-1)
+}
