@@ -425,3 +425,31 @@ func InvertTree(root *utils.TreeNode) *utils.TreeNode {
 
 	return root
 }
+
+func isSymmetric(root *utils.TreeNode) bool {
+	if root == nil {
+		return true
+	}
+
+	queue := []*utils.TreeNode{root.Left, root.Right}
+
+	for len(queue) > 0 {
+		left := queue[0]
+		queue = queue[1:]
+		right := queue[0]
+		queue = queue[1:]
+
+		if left == nil && right == nil {
+			continue
+		}
+
+		if left == nil || right == nil || left.Val != right.Val {
+			return false
+		}
+
+		queue = append(queue, left.Left, right.Right)
+		queue = append(queue, left.Right, right.Left)
+	}
+
+	return true
+}
