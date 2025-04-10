@@ -412,3 +412,16 @@ func IsSameTree(p *utils.TreeNode, q *utils.TreeNode) bool {
 
 	return IsSameTree(p.Left, q.Left) && IsSameTree(p.Right, q.Right)
 }
+
+func InvertTree(root *utils.TreeNode) *utils.TreeNode {
+	if root == nil {
+		return nil
+	}
+
+	root.Left, root.Right = root.Right, root.Left
+
+	root.Right = InvertTree(root.Right)
+	root.Left = InvertTree(root.Left)
+
+	return root
+}
